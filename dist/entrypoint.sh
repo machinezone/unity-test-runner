@@ -23,6 +23,12 @@ source /steps/return_license.sh
 rm -r "$ACTIVATE_LICENSE_PATH"
 
 #
+# Configure ssh
+#
+
+mkdir -m 700 -p ~/.ssh && echo "Host *" > ~/.ssh/config && echo " StrictHostKeyChecking no" >> ~/.ssh/config
+
+#
 # Instructions for debugging
 #
 

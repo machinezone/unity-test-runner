@@ -77,10 +77,8 @@ for platform in ${TEST_PLATFORMS//;/ }; do
     -projectPath "$UNITY_PROJECT_PATH" \
     -coverageResultsPath "$FULL_COVERAGE_RESULTS_PATH" \
     $runTests \
-    -enableCodeCoverage \
-    -debugCodeOptimization \
-    -coverageOptions "$COVERAGE_OPTIONS" \
-    $CUSTOM_PARAMETERS
+    -executeMethod MissingRefsFinder.Cli.InspectAll \
+    -outfile unity-asset-reference-errors.tsv
 
   # Catch exit code
   TEST_EXIT_CODE=$?

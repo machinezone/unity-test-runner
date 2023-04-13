@@ -73,12 +73,11 @@ for platform in ${TEST_PLATFORMS//;/ }; do
 
   unity-editor \
     -batchmode \
-    -logFile "$FULL_ARTIFACTS_PATH/$platform.log" \
     -projectPath "$UNITY_PROJECT_PATH" \
-    -coverageResultsPath "$FULL_COVERAGE_RESULTS_PATH" \
-    $runTests \
+    -quit \
     -executeMethod MissingRefsFinder.Cli.InspectAll \
-    -outfile unity-asset-reference-errors.tsv
+    -outfile unity-asset-reference-errors.tsv \
+    -logFile "$FULL_ARTIFACTS_PATH/$platform.log"
 
   # Catch exit code
   TEST_EXIT_CODE=$?

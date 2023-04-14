@@ -110,6 +110,11 @@ for platform in ${TEST_PLATFORMS//;/ }; do
     cat "$FULL_ARTIFACTS_PATH/$platform-results.xml"
     cat "$FULL_ARTIFACTS_PATH/$platform-results.xml" | grep test-run | grep Passed
   fi
+
+  # Check file contents
+  echo "-------------------------------"
+  cat $UNITY_PROJECT_PATH/Assets/Content/Art/environment/resource/prefab/env_wm_resource_spoke_crystals_rocks_03_prefab.prefab
+  echo "-------------------------------"
 done
 
 #

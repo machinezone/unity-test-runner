@@ -76,7 +76,7 @@ for platform in ${TEST_PLATFORMS//;/ }; do
     -projectPath "$UNITY_PROJECT_PATH" \
     -quit \
     -executeMethod MissingRefsFinder.Cli.InspectAll \
-    -outfile unity-asset-reference-errors.tsv \
+    -outfile "$FULL_ARTIFACTS_PATH/unity-asset-reference-errors.tsv" \
     -logFile "$FULL_ARTIFACTS_PATH/$platform.log"
 
   # Catch exit code

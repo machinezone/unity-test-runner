@@ -300,6 +300,7 @@ const Docker = {
                 --env GIT_PRIVATE_TOKEN="${gitPrivateToken}" \
                 --env CHOWN_FILES_TO="${chownFilesTo}" \
                 ${sshAgent ? '--env SSH_AUTH_SOCK=/ssh-agent' : ''} \
+                --volume "${githubHome}:/root:z" \
                 --volume "${workspace}:/github/workspace:z" \
                 --volume "${actionFolder}/steps:/steps:z" \
                 --volume "${actionFolder}/entrypoint.sh:/entrypoint.sh:z" \

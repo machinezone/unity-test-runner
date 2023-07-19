@@ -1,6 +1,8 @@
 import ImageTag from './image-tag';
+import Platform from './platform';
 
 jest.spyOn(ImageTag, 'getImagePlatformPrefix').mockReturnValue('ubuntu');
+jest.spyOn(ImageTag, 'getImagePlatformType').mockReturnValue(Platform.types.StandaloneLinux64);
 
 describe('ImageTag', () => {
   const some = {

@@ -62,6 +62,8 @@ const Docker = {
       artifactsPath,
       useHostNetwork,
       sshAgent,
+      packageMode,
+      packageName,
       gitPrivateToken,
       githubToken,
       runnerTemporaryPath,
@@ -95,6 +97,8 @@ const Docker = {
                 --env COVERAGE_OPTIONS="${coverageOptions}" \
                 --env COVERAGE_RESULTS_PATH="CodeCoverage" \
                 --env ARTIFACTS_PATH="${artifactsPath}" \
+                --env PACKAGE_MODE="${packageMode}" \
+                --env PACKAGE_NAME="${packageName}" \
                 --env GITHUB_REF \
                 --env GITHUB_SHA \
                 --env GITHUB_REPOSITORY \
@@ -116,6 +120,7 @@ const Docker = {
                 --volume "${githubHome}:/root:z" \
                 --volume "${githubWorkflow}:/github/workflow:z" \
                 --volume "${workspace}:/github/workspace:z" \
+                --volume "${actionFolder}/test-standalone-scripts:/UnityStandaloneScripts:z" \
                 --volume "${actionFolder}/steps:/steps:z" \
                 --volume "${actionFolder}/entrypoint.sh:/entrypoint.sh:z" \
                 --volume "${actionFolder}/unity-config:/usr/share/unity3d/config/:z" \
@@ -138,6 +143,8 @@ const Docker = {
       artifactsPath,
       useHostNetwork,
       sshAgent,
+      packageMode,
+      packageName,
       gitPrivateToken,
       githubToken,
       runnerTemporaryPath,
@@ -171,6 +178,8 @@ const Docker = {
                 --env COVERAGE_OPTIONS="${coverageOptions}" \
                 --env COVERAGE_RESULTS_PATH="CodeCoverage" \
                 --env ARTIFACTS_PATH="${artifactsPath}" \
+                --env PACKAGE_MODE="${packageMode}" \
+                --env PACKAGE_NAME="${packageName}" \
                 --env GITHUB_REF \
                 --env GITHUB_SHA \
                 --env GITHUB_REPOSITORY \
@@ -189,6 +198,7 @@ const Docker = {
                 --env GIT_PRIVATE_TOKEN="${gitPrivateToken}" \
                 --env CHOWN_FILES_TO="${chownFilesTo}" \
                 ${sshAgent ? '--env SSH_AUTH_SOCK=c:/ssh-agent' : ''} \
+                --volume "${actionFolder}/test-standalone-scripts":"c:/UnityStandaloneScripts" \
                 --volume "${githubHome}":"c:/root" \
                 --volume "${githubWorkflow}":"c:/github/workflow" \
                 --volume "${workspace}":"c:/github/workspace" \

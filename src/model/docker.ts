@@ -62,6 +62,7 @@ const Docker = {
       artifactsPath,
       useHostNetwork,
       sshAgent,
+      macAddress,
       packageMode,
       packageName,
       gitPrivateToken,
@@ -123,6 +124,7 @@ const Docker = {
                 --volume "${actionFolder}/entrypoint.sh:/entrypoint.sh:z" \
                 --volume "${actionFolder}/unity-config:/usr/share/unity3d/config/:z" \
                 ${sshAgent ? `--volume ${sshAgent}:/ssh-agent` : ''} \
+                ${macAddress ? `--mac-address ${macAddress}` : ''} \
                 ${useHostNetwork ? '--net=host' : ''} \
                 ${githubToken ? '--env USE_EXIT_CODE=false' : '--env USE_EXIT_CODE=true'} \
                 ${image} \

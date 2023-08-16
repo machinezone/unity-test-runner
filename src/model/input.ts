@@ -72,6 +72,7 @@ const Input = {
     const rawArtifactsPath = getInput('artifactsPath') || 'artifacts';
     const rawUseHostNetwork = getInput('useHostNetwork') || 'false';
     const sshAgent = getInput('sshAgent') || '';
+    const macAddress = getInput('macAddress') || '';
     const gitPrivateToken = getInput('gitPrivateToken') || '';
     const githubToken = getInput('githubToken') || '';
     const checkName = getInput('checkName') || 'Test Results';
@@ -134,6 +135,7 @@ const Input = {
       artifactsPath,
       useHostNetwork,
       sshAgent,
+      macAddress,
       gitPrivateToken,
       githubToken,
       checkName,

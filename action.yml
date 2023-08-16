@@ -36,6 +36,10 @@ inputs:
     required: false
     default: ''
     description: 'SSH Agent path to forward to the container.'
+  macAddress:
+    required: false
+    default: ''
+    description: 'Mac Address to spoof for the container.'
   gitPrivateToken:
     required: false
     default: ''

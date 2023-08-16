@@ -98,7 +98,7 @@ function run() {
         try {
             model_1.Action.checkCompatibility();
             const { workspace, actionFolder } = model_1.Action;
-            const { editorVersion, customImage, projectPath, customParameters, testMode, coverageOptions, artifactsPath, useHostNetwork, sshAgent, gitPrivateToken, githubToken, checkName, packageMode, packageName, chownFilesTo, unityLicensingServer, } = model_1.Input.getFromUser();
+            const { editorVersion, customImage, projectPath, customParameters, testMode, coverageOptions, artifactsPath, useHostNetwork, sshAgent, macAddress, gitPrivateToken, githubToken, checkName, packageMode, packageName, chownFilesTo, unityLicensingServer, } = model_1.Input.getFromUser();
             const baseImage = new model_1.ImageTag({ editorVersion, customImage });
             const runnerContext = model_1.Action.runnerContext();
             try {
@@ -112,6 +112,7 @@ function run() {
                     artifactsPath,
                     useHostNetwork,
                     sshAgent,
+                    macAddress,
                     packageMode,
                     packageName,
                     gitPrivateToken,
@@ -262,7 +263,7 @@ const Docker = {
         });
     },
     getLinuxCommand(image, parameters) {
-        const { actionFolder, editorVersion, workspace, projectPath, customParameters, testMode, coverageOptions, artifactsPath, useHostNetwork, sshAgent, packageMode, packageName, gitPrivateToken, githubToken, runnerTemporaryPath, chownFilesTo, unityLicensingServer, } = parameters;
+        const { actionFolder, editorVersion, workspace, projectPath, customParameters, testMode, coverageOptions, artifactsPath, useHostNetwork, sshAgent, macAddress, packageMode, packageName, gitPrivateToken, githubToken, runnerTemporaryPath, chownFilesTo, unityLicensingServer, } = parameters;
         const githubHome = path_1.default.join(runnerTemporaryPath, '_github_home');
         if (!(0, fs_1.existsSync)(githubHome))
             (0, fs_1.mkdirSync)(githubHome);
@@ -316,6 +317,7 @@ const Docker = {
                 --volume "${actionFolder}/entrypoint.sh:/entrypoint.sh:z" \
                 --volume "${actionFolder}/unity-config:/usr/share/unity3d/config/:z" \
                 ${sshAgent ? `--volume ${sshAgent}:/ssh-agent` : ''} \
+                ${macAddress ? `--mac-address ${macAddress}` : ''} \
                 ${useHostNetwork ? '--net=host' : ''} \
                 ${githubToken ? '--env USE_EXIT_CODE=false' : '--env USE_EXIT_CODE=true'} \
                 ${image} \
@@ -618,6 +620,7 @@ const Input = {
         const rawArtifactsPath = (0, core_1.getInput)('artifactsPath') || 'artifacts';
         const rawUseHostNetwork = (0, core_1.getInput)('useHostNetwork') || 'false';
         const sshAgent = (0, core_1.getInput)('sshAgent') || '';
+        const macAddress = (0, core_1.getInput)('macAddress') || '';
         const gitPrivateToken = (0, core_1.getInput)('gitPrivateToken') || '';
         const githubToken = (0, core_1.getInput)('githubToken') || '';
         const checkName = (0, core_1.getInput)('checkName') || 'Test Results';
@@ -667,6 +670,7 @@ const Input = {
             artifactsPath,
             useHostNetwork,
             sshAgent,
+            macAddress,
             gitPrivateToken,
             githubToken,
             checkName,

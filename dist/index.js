@@ -274,7 +274,7 @@ const Docker = {
         if (!(0, fs_1.existsSync)(githubWorkflow))
             (0, fs_1.mkdirSync)(githubWorkflow);
         const cidfile = containerIdFilePath(parameters);
-        const testPlatforms = (testMode === 'all' ? ['playmode', 'editmode', 'COMBINE_RESULTS'] : [testMode]).join(';');
+        const testPlatforms = (testMode === 'all' ? ['playmode', 'editmode'] : [testMode]).join(';');
         return `docker run \
                 --workdir /github/workspace \
                 --cidfile "${cidfile}" \
@@ -337,7 +337,7 @@ const Docker = {
         const githubWorkflow = path_1.default.join(runnerTemporaryPath, '_github_workflow');
         if (!(0, fs_1.existsSync)(githubWorkflow))
             (0, fs_1.mkdirSync)(githubWorkflow);
-        const testPlatforms = (testMode === 'all' ? ['playmode', 'editmode', 'COMBINE_RESULTS'] : [testMode]).join(';');
+        const testPlatforms = (testMode === 'all' ? ['playmode', 'editmode'] : [testMode]).join(';');
         return `docker run \
                 --workdir /github/workspace \
                 --cidfile "${cidfile}" \
